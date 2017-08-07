@@ -1,7 +1,11 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view></router-view>
+      <router-link to="/home"><img id="logo" src="./assets/logo.png" /></router-link>
+      <p>
+        <router-link to="/record">Record Outfit</router-link>
+        <router-link to="/history">History</router-link>
+      </p>
+      <router-view></router-view>
   </div>
 </template>
 
@@ -18,6 +22,10 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+#logo {
+  width: 300px;
+  border: 0;
 }
 </style>

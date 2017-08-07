@@ -1,0 +1,10 @@
+// Copy this file to local_settings.js and fill in the values
+module.exports = {
+  FIREBASE_API_KEY: '"xxx"',
+  FIREBASE_AUTH_DOMAIN: '"xxx"',
+  FIREBASE_DATABASE_URL: '"xxx"',
+  FIREBASE_PROJECT_ID: '"xxx"',
+  FIREBASE_STORAGE_BUCKET: '"xxx',
+  FIREBASE_MESSAING_SENDER_ID: '"xxx"',
+  CLOUDINARY_CLOUD_NAME: '"xxx"'
+}

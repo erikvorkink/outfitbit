@@ -1,9 +1,16 @@
 <template>
-  <img class="Thumbnail" v-bind:src=url>
+  <v-card-media
+    class="Thumbnail"
+    :src="url"
+    v-bind:height="height + 'px'"
+  >
+  </v-card-media>
 </template>
 
 <script>
 import images from '@/services/images'
+
+const height = 150
 
 export default {
   name: 'thumbnail',
@@ -11,10 +18,10 @@ export default {
   data () {
     return {
       url: images.getUrl(this.article.cloudinary_id, {
-        width: 150,
-        height: 150,
+        height: height,
         crop: 'fill'
-      })
+      }),
+      height: height
     }
   }
 }

@@ -1,8 +1,7 @@
 <template>
-  <p class="outfititem">
-    {{ article.type }}: {{ article.name }}
+  <section class="article">
     <Thumbnail :article="article"></Thumbnail>
-  </p>
+  </section>
 </template>
 
 <script>

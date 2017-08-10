@@ -15,12 +15,15 @@ const maxOutfits = 30
 
 export default {
   name: 'history',
+
   firebase: {
     outfits: database.getOutfits(maxOutfits)
   },
+
   components: {
     Outfit
   },
+
   data () {
     return {
       articles: database.getArticles()

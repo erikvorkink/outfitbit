@@ -16,15 +16,26 @@ const db = firebaseApp.database()
 let articles = {}
 db.ref('articles').once('value', (snapshot) => {
   snapshot.forEach((item) => {
-    articles[item.key] = item.val()
+    let val = item.val()
+    articles[val.id] = val
   })
 })
+
+const outfitsRef = db.ref('outfits')
 
 export default {
   getArticles: () => {
     return articles
   },
+
+  getArticlesByType: (type) => {
+    return db.ref('articles').orderByChild('type').equalTo(type)
+  },
+
   getOutfits: (num = 30) => {
-    return db.ref('outfits').limitToLast(num)
+    return outfitsRef.limitToLast(num)
+  },
+  createOutfit: (outfit) => {
+    outfitsRef.push(outfit)
   }
 }

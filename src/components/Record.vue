@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import { EventBus } from '@/services/event-bus'
 import database from '@/services/database'
 import moment from 'moment'
 import Thumbnail from '@/components/Thumbnail'
@@ -52,7 +53,6 @@ export default {
 
   created: () => {
     resetNewOutfit()
-    console.log(newOutfit)
   },
 
   firebase: {
@@ -72,6 +72,7 @@ export default {
         return
       }
       database.createOutfit(newOutfit)
+      EventBus.$emit('snackbar', 'looking sharp!')
       resetNewOutfit()
       // this.$router.push('/history')
     },

@@ -34,18 +34,36 @@
     </v-navigation-drawer>
     <v-toolbar fixed dark>
       <v-toolbar-side-icon @click.native.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title>looking sharp, sir</v-toolbar-title>
+      <v-toolbar-title>outfitbit</v-toolbar-title>
     </v-toolbar>
     <main>
       <v-container fluid>
         <router-view></router-view>
       </v-container>
+
+      <v-snackbar :timeout="snackbar.timeout" v-model="snackbar.visible">
+        {{ snackbar.text }}
+        <v-btn dark flat @click.native="snackbar.visible = false">Close</v-btn>
+      </v-snackbar>
+
     </main>
   </v-app>
 </template>
 
 <script>
-import Record from '@/components/Record'
+import { EventBus } from '@/services/event-bus'
+
+// Listen for events that trigger a snackbar-style notification
+let snackbar = {
+  visible: false,
+  context: 'success',
+  timeout: 500,
+  text: ''
+}
+EventBus.$on('snackbar', (text) => {
+  snackbar.visible = true
+  snackbar.text = text
+})
 
 export default {
   name: 'app',
@@ -53,17 +71,18 @@ export default {
     return {
       drawer: true,
       items: [
-        { title: 'Record Outfit', href: '/record', component: Record, icon: 'accessibility' },
+        { title: 'Record Outfit', href: '/record', icon: 'accessibility' },
         { title: 'History', href: '/history', icon: 'history' }
       ],
       mini: false,
-      right: null
+      right: null,
+      snackbar: snackbar
     }
   }
 }
 </script>
 
-<style>
+<style scoped>
 #logo {
   height: 30px;
 }

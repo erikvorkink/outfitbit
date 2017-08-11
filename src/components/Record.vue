@@ -1,34 +1,33 @@
 <template>
-  <div class="record">
-  	<form id="form" class="form-inline" v-on:submit.prevent="createOutfit">
+  <section class="record">
+    <h4>What'll it be today?</h4>
 
-      <h3>Shirt</h3>
-      <div v-for="shirt in shirts">
-        <Thumbnail :article="shirt" @click.native="selectArticle(shirt)"></Thumbnail>
-      </div>
+    <section>
+      <h5>Shirt</h5>
+      <ArticleChoice type="shirt" :choices="shirts" @choseArticle="onChoseArticle"></ArticleChoice>
+    </section>
 
-      <h3>Pants</h3>
-      <div v-for="pant in pants">
-        <Thumbnail :article="pant" @click.native="selectArticle(pant)"></Thumbnail>
-      </div>
+    <section>
+      <h5>Pants</h5>
+      <ArticleChoice type="pants" :choices="pants" @choseArticle="onChoseArticle"></ArticleChoice>
+    </section>
 
-      <h3>Shoes</h3>
-      <div v-for="shoe in shoes">
-        <Thumbnail :article="shoe" @click.native="selectArticle(shoe)"></Thumbnail>
-      </div>
+    <section>
+      <h5>Shoes</h5>
+      <ArticleChoice type="shoes" :choices="shoes" @choseArticle="onChoseArticle"></ArticleChoice>
+    </section>
 
-      <hr>
-
-      <input type="submit" class="btn btn-primary" value="Record Outfit">
-    </form>
-  </div>
+    <v-btn light
+      v-on:click="createOutfit"
+      v-bind:style="{ marginTop: '30px' }">Record Outfit</v-btn>
+  </section>
 </template>
 
 <script>
 import { EventBus } from '@/services/event-bus'
 import database from '@/services/database'
 import moment from 'moment'
-import Thumbnail from '@/components/Thumbnail'
+import ArticleChoice from '@/components/ArticleChoice'
 
 let newOutfit = {}
 let resetNewOutfit = () => {
@@ -62,10 +61,15 @@ export default {
   },
 
   components: {
-    Thumbnail
+    ArticleChoice
   },
 
   methods: {
+    onChoseArticle: (article) => {
+      newOutfit.selections[article.type] = article.id
+      console.log(newOutfit)
+    },
+
     createOutfit: () => {
       if (!outfitIsValid(newOutfit)) {
         alert('Invalid outfit')
@@ -75,16 +79,16 @@ export default {
       EventBus.$emit('snackbar', 'looking sharp!')
       resetNewOutfit()
       // this.$router.push('/history')
-    },
-
-    selectArticle: (article) => {
-      newOutfit.selections[article.type] = article.id
-      console.log(newOutfit)
     }
   }
 }
 </script>
 
 <style scoped>
-
+h5 {
+  margin-top: 40px;
+}
+section:first-of-type h5 {
+  margin-top: 0;
+}
 </style>

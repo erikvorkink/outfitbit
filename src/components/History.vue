@@ -1,7 +1,8 @@
 <template>
   <div class="history">
+    <h4>History</h4>
     <section v-for="outfit in outfits">
-      <h4>{{ outfit.date | moment('dddd, MMMM D YYYY') }}</h4>
+      <h5>{{ outfit.date | moment('dddd, MMMM D YYYY') }}</h5>
       <Outfit :articles="articles" :outfit="outfit"></Outfit>
     </section>
   </div>
@@ -33,10 +34,10 @@ export default {
 </script>
 
 <style scoped>
-h4 {
+h5 {
   margin-top: 40px;
 }
-section:first-child h4 {
+section:first-of-type h5 {
   margin-top: 0;
 }
 </style>

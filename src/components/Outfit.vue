@@ -2,7 +2,7 @@
   <v-layout class="outfit">
     <v-flex xs12 sm6 offset-sm3>
       <v-card>
-        <v-container fluid v-bind="{ [`grid-list-${size}`]: true }">
+        <v-container fluid v-bind="{ [`grid-list-lg`]: true }">
           <v-layout row wrap>
 
             <v-flex xs4>
@@ -38,15 +38,6 @@ export default {
   props: ['articles', 'outfit'],
   components: {
     Article
-  },
-  data () {
-    return {
-      size: 'lg'
-    }
   }
 }
 </script>
-
-<style scoped>
-
-</style>

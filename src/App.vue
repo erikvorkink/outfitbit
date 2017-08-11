@@ -57,7 +57,7 @@ import { EventBus } from '@/services/event-bus'
 let snackbar = {
   visible: false,
   context: 'success',
-  timeout: 500,
+  timeout: 5000,
   text: ''
 }
 EventBus.$on('snackbar', (text) => {

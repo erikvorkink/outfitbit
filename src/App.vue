@@ -41,7 +41,15 @@
         <router-view></router-view>
       </v-container>
 
-      <v-snackbar :timeout="snackbar.timeout" v-model="snackbar.visible">
+      <v-snackbar
+        :timeout="snackbar.timeout"
+        :success="snackbar.context === 'success'"
+        :info="snackbar.context === 'info'"
+        :warning="snackbar.context === 'warning'"
+        :error="snackbar.context === 'error'"
+        :primary="snackbar.context === 'primary'"
+        :secondary="snackbar.context === 'secondary'"
+        v-model="snackbar.visible">
         {{ snackbar.text }}
         <v-btn dark flat @click.native="snackbar.visible = false">Close</v-btn>
       </v-snackbar>
@@ -60,9 +68,11 @@ let snackbar = {
   timeout: 5000,
   text: ''
 }
-EventBus.$on('snackbar', (text) => {
+EventBus.$on('snackbar', (options) => {
   snackbar.visible = true
-  snackbar.text = text
+  snackbar.timeout = options.timeout || 5000
+  snackbar.context = options.context || 'success'
+  snackbar.text = options.text
 })
 
 export default {

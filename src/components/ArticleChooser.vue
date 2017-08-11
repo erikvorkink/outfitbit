@@ -33,7 +33,7 @@ export default {
     Article
   },
   methods: {
-    chooseArticle: function (article) { // using this style so 'this' works
+    chooseArticle: function (article) {
       // Tell the parent that this article was chosen.
       // The article has the type inside of it so we'll know
       // which category the selection refers to.

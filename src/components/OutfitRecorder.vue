@@ -1,6 +1,6 @@
 <template>
   <section class="outfitRecorder">
-    <h4>{{ getGreeting() }}</h4>
+    <h4>{{ greeting }}</h4>
 
     <section>
       <h5>Shirt</h5>
@@ -31,6 +31,7 @@ import ArticleChooser from '@/components/ArticleChooser'
 
 let newOutfit = {}
 let resetNewOutfit = () => {
+  console.log('resetNewOutfit')
   newOutfit = {
     moment: moment(),
     selections: {
@@ -75,29 +76,46 @@ export default {
 
   data () {
     return {
-      newOutfit: newOutfit // TODO: not resetting the way we need it to
+      newOutfit: newOutfit,
+      greeting: greetingMessages[Math.floor(Math.random() * greetingMessages.length)]
     }
   },
 
   methods: {
-    getGreeting: () => {
-      return greetingMessages[Math.floor(Math.random() * greetingMessages.length)]
-    },
-
     onChoseArticle: (article) => {
       newOutfit.selections[article.type] = article.id
     },
 
-    createOutfit: () => {
+    createOutfit: function () {
       if (!outfitIsValid(newOutfit)) {
         alert('Please choose an article from each category')
         return
       }
-      database.createOutfit(newOutfit)
-      resetNewOutfit()
 
-      let msg = successMessages[Math.floor(Math.random() * successMessages.length)]
-      EventBus.$emit('snackbar', msg)
+      // Saving happens so quickly that it doesn't feel "real" so pretend to slow down
+      const fakeTimeout = 500
+      EventBus.$emit('snackbar', {
+        text: 'Saving...',
+        context: 'secondary',
+        timeout: fakeTimeout
+      })
+
+      database.createOutfit(newOutfit)
+
+      setTimeout(() => {
+        // Real success message
+        EventBus.$emit('snackbar', {
+          text: successMessages[Math.floor(Math.random() * successMessages.length)],
+          context: 'success',
+          timeout: 3000
+        })
+
+        // Redirect to the history page. This works around the issue
+        // of resetNewOutfit not giving us what we want, plus it's
+        // more interesting to the user.
+        this.$router.push('/history')
+        window.scrollTo(0, 0)
+      }, fakeTimeout + 300) // buffer so we don't clash with the fake message
     }
   }
 }

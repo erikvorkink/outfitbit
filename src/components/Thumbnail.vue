@@ -1,10 +1,5 @@
 <template>
-  <v-card-media
-    class="Thumbnail"
-    :src="url"
-    v-bind:height="height + 'px'"
-  >
-  </v-card-media>
+  <v-card-media class="Thumbnail" :src="url" v-bind:height="height + 'px'"></v-card-media>
 </template>
 
 <script>

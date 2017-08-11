@@ -1,20 +1,20 @@
 <template>
-  <section class="record">
+  <section class="outfitRecorder">
     <h4>{{ getGreeting() }}</h4>
 
     <section>
       <h5>Shirt</h5>
-      <ArticleChoice type="shirt" :choices="shirts" :selectedId="newOutfit.selections.shirt" @choseArticle="onChoseArticle"></ArticleChoice>
+      <ArticleChooser type="shirt" :choices="shirts" :selectedId="newOutfit.selections.shirt" @choseArticle="onChoseArticle"></ArticleChooser>
     </section>
 
     <section>
       <h5>Pants</h5>
-      <ArticleChoice type="pants" :choices="pants" :selectedId="newOutfit.selections.pants" @choseArticle="onChoseArticle"></ArticleChoice>
+      <ArticleChooser type="pants" :choices="pants" :selectedId="newOutfit.selections.pants" @choseArticle="onChoseArticle"></ArticleChooser>
     </section>
 
     <section>
       <h5>Shoes</h5>
-      <ArticleChoice type="shoes" :choices="shoes" :selectedId="newOutfit.selections.shoes" @choseArticle="onChoseArticle"></ArticleChoice>
+      <ArticleChooser type="shoes" :choices="shoes" :selectedId="newOutfit.selections.shoes" @choseArticle="onChoseArticle"></ArticleChooser>
     </section>
 
     <v-btn secondary
@@ -27,7 +27,7 @@
 import { EventBus } from '@/services/event-bus'
 import database from '@/services/database'
 import moment from 'moment'
-import ArticleChoice from '@/components/ArticleChoice'
+import ArticleChooser from '@/components/ArticleChooser'
 
 let newOutfit = {}
 let resetNewOutfit = () => {
@@ -57,7 +57,7 @@ const successMessages = [
 ]
 
 export default {
-  name: 'record',
+  name: 'outfitRecorder',
 
   beforeCreate: () => {
     resetNewOutfit()
@@ -70,7 +70,7 @@ export default {
   },
 
   components: {
-    ArticleChoice
+    ArticleChooser
   },
 
   data () {
@@ -107,6 +107,7 @@ export default {
 h5 {
   margin-top: 40px;
 }
+
 section:first-of-type h5 {
   margin-top: 0;
 }

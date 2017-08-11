@@ -3,7 +3,7 @@ import VueFire from 'vuefire'
 import VueMoment from 'vue-moment'
 
 import Router from 'vue-router'
-import Record from '@/components/Record'
+import OutfitRecorder from '@/components/OutfitRecorder'
 import History from '@/components/History'
 
 Vue.use(Router)
@@ -16,7 +16,7 @@ export default new Router({
       path: '/record',
       alias: '/',
       name: 'Record',
-      component: Record
+      component: OutfitRecorder
     },
     {
       path: '/history',

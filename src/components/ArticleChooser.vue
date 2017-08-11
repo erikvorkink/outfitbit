@@ -1,5 +1,5 @@
 <template>
-  <v-layout class="articleChoice">
+  <v-layout class="articleChooser">
     <v-flex xs12 sm6 offset-sm3>
       <v-card>
         <v-container fluid v-bind="{ [`grid-list-lg`]: true }">
@@ -27,7 +27,7 @@
 import Article from '@/components/Article'
 
 export default {
-  name: 'articleChoice',
+  name: 'articleChooser',
   props: ['choices', 'selectedId'],
   components: {
     Article

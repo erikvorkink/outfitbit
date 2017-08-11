@@ -122,11 +122,15 @@ export default {
 </script>
 
 <style scoped>
+h4 {
+  margin-bottom: -15px;
+}
+
 h5 {
   margin-top: 40px;
 }
 
-section:first-of-type h5 {
+/*section:first-of-type h5 {
   margin-top: 0;
-}
+}*/
 </style>

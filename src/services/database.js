@@ -12,16 +12,17 @@ const config = {
 const firebaseApp = Firebase.initializeApp(config)
 const db = firebaseApp.database()
 
+const articlesRef = db.ref('articles')
+const outfitsRef = db.ref('outfits')
+
 // We don't need to monitor articles so load them up once
 let articles = {}
-db.ref('articles').once('value', (snapshot) => {
+articlesRef.once('value', (snapshot) => {
   snapshot.forEach((item) => {
     let val = item.val()
     articles[val.id] = val
   })
 })
-
-const outfitsRef = db.ref('outfits')
 
 export default {
   getArticles: () => {
@@ -29,13 +30,19 @@ export default {
   },
 
   getArticlesByType: (type) => {
-    return db.ref('articles').orderByChild('type').equalTo(type)
+    return articlesRef.orderByChild('type').equalTo(type)
   },
 
-  getOutfits: (num = 30) => {
-    return outfitsRef.limitToLast(num)
+  getOutfits: (num) => {
+    return outfitsRef.orderByChild('reverse_order').limitToLast(num)
   },
+
   createOutfit: (outfit) => {
-    outfitsRef.push(outfit)
+    let record = {
+      date: outfit.moment.format('YYYY-MM-DD'),
+      reverse_order: outfit.moment.unix() * -1,
+      selections: outfit.selections
+    }
+    outfitsRef.push(record)
   }
 }

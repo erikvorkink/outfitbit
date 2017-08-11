@@ -4,12 +4,18 @@
       <v-card>
         <v-container fluid v-bind="{ [`grid-list-lg`]: true }">
           <v-layout row wrap>
-            <v-flex xs4 v-for="article in choices"
-                v-bind:data="article" v-bind:key="article.id">
-              <v-card flat tile>
+
+            <v-flex xs4 v-for="article in choices" :data="article" :key="article.id">
+              <v-card hover tile
+                :flat="article.id !== selectedId"
+                :raised="article.id === selectedId"
+                :class="{ articleCard: true,
+                          selected: article.id === selectedId,
+                          loser: selectedId && article.id !== selectedId }">
                 <Article :article="article" v-on:click.native="chooseArticle(article)"></Article>
               </v-card>
             </v-flex>
+
           </v-layout>
         </v-container>
       </v-card>
@@ -22,7 +28,7 @@ import Article from '@/components/Article'
 
 export default {
   name: 'articleChoice',
-  props: ['choices'],
+  props: ['choices', 'selectedId'],
   components: {
     Article
   },
@@ -36,3 +42,23 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.articleCard {
+  border: 1px dashed #AAA;
+}
+
+.articleCard.selected {
+  border: 1px solid #7DBDD8;
+}
+
+@keyframes fadeout{
+  0%{opacity:1}
+  100%{opacity:0.3}
+}
+
+.articleCard.loser {
+  -webkit-animation: 0.5s ease 0s normal forwards 1 fadeout;
+  animation: 0.5s ease 0s normal forwards 1 fadeout;
+}
+</style>

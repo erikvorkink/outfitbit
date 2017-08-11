@@ -1,5 +1,5 @@
 <template>
-  <section class="article">
+  <section class="article" v-tooltip:top="{ html: article.name }">
     <Thumbnail :article="article"></Thumbnail>
   </section>
 </template>

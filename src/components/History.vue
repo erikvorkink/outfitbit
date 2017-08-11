@@ -12,7 +12,7 @@
 import database from '@/services/database'
 import Outfit from '@/components/Outfit'
 
-const maxOutfits = 30
+const maxOutfits = 90
 
 export default {
   name: 'history',

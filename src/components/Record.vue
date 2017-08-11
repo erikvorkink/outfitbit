@@ -1,23 +1,23 @@
 <template>
   <section class="record">
-    <h4>What'll it be today?</h4>
+    <h4>{{ getGreeting() }}</h4>
 
     <section>
       <h5>Shirt</h5>
-      <ArticleChoice type="shirt" :choices="shirts" @choseArticle="onChoseArticle"></ArticleChoice>
+      <ArticleChoice type="shirt" :choices="shirts" :selectedId="newOutfit.selections.shirt" @choseArticle="onChoseArticle"></ArticleChoice>
     </section>
 
     <section>
       <h5>Pants</h5>
-      <ArticleChoice type="pants" :choices="pants" @choseArticle="onChoseArticle"></ArticleChoice>
+      <ArticleChoice type="pants" :choices="pants" :selectedId="newOutfit.selections.pants" @choseArticle="onChoseArticle"></ArticleChoice>
     </section>
 
     <section>
       <h5>Shoes</h5>
-      <ArticleChoice type="shoes" :choices="shoes" @choseArticle="onChoseArticle"></ArticleChoice>
+      <ArticleChoice type="shoes" :choices="shoes" :selectedId="newOutfit.selections.shoes" @choseArticle="onChoseArticle"></ArticleChoice>
     </section>
 
-    <v-btn light
+    <v-btn secondary
       v-on:click="createOutfit"
       v-bind:style="{ marginTop: '30px' }">Record Outfit</v-btn>
   </section>
@@ -32,7 +32,7 @@ import ArticleChoice from '@/components/ArticleChoice'
 let newOutfit = {}
 let resetNewOutfit = () => {
   newOutfit = {
-    date: moment().format('YYYY-MM-DD'),
+    moment: moment(),
     selections: {
       shirt: null,
       pants: null,
@@ -42,15 +42,24 @@ let resetNewOutfit = () => {
 }
 
 let outfitIsValid = (outfit) => {
-  console.log(outfit)
-  return outfit.date && outfit.selections.shirt &&
-        outfit.selections.pants && outfit.selections.shoes
+  return outfit.selections.shirt && outfit.selections.pants && outfit.selections.shoes
 }
+const greetingMessages = [
+  'What\'ll it be today?',
+  'Arm yourself for battle',
+  'Don\'t forget pants'
+]
+
+const successMessages = [
+  'Good choice!',
+  'Looking sharp!',
+  'Muy caliente!'
+]
 
 export default {
   name: 'record',
 
-  created: () => {
+  beforeCreate: () => {
     resetNewOutfit()
   },
 
@@ -64,21 +73,31 @@ export default {
     ArticleChoice
   },
 
+  data () {
+    return {
+      newOutfit: newOutfit // TODO: not resetting the way we need it to
+    }
+  },
+
   methods: {
+    getGreeting: () => {
+      return greetingMessages[Math.floor(Math.random() * greetingMessages.length)]
+    },
+
     onChoseArticle: (article) => {
       newOutfit.selections[article.type] = article.id
-      console.log(newOutfit)
     },
 
     createOutfit: () => {
       if (!outfitIsValid(newOutfit)) {
-        alert('Invalid outfit')
+        alert('Please choose an article from each category')
         return
       }
       database.createOutfit(newOutfit)
-      EventBus.$emit('snackbar', 'looking sharp!')
       resetNewOutfit()
-      // this.$router.push('/history')
+
+      let msg = successMessages[Math.floor(Math.random() * successMessages.length)]
+      EventBus.$emit('snackbar', msg)
     }
   }
 }

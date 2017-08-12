@@ -27,7 +27,7 @@ export default {
 
   data () {
     return {
-      articles: database.getArticles()
+      articles: database.getArticlesArray()
     }
   }
 }

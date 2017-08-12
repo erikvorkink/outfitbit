@@ -25,7 +25,9 @@ articlesRef.once('value', (snapshot) => {
 })
 
 export default {
-  getArticles: () => {
+  // This doesn't give us a DB reference like other getters,
+  // so it can't be used within firebase {} in a component
+  getArticlesArray: () => {
     return articles
   },
 

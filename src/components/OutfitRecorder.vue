@@ -31,7 +31,6 @@ import ArticleChooser from '@/components/ArticleChooser'
 
 let newOutfit = {}
 let resetNewOutfit = () => {
-  console.log('resetNewOutfit')
   newOutfit = {
     moment: moment(),
     selections: {
@@ -129,8 +128,4 @@ h4 {
 h5 {
   margin-top: 40px;
 }
-
-/*section:first-of-type h5 {
-  margin-top: 0;
-}*/
 </style>

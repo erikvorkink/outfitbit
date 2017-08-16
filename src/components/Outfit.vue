@@ -7,19 +7,19 @@
 
             <v-flex xs4>
               <v-card flat tile>
-                <Article :article="articles[outfit.selections.shirt]"></Article>
+                <ClothingArticle :article="articles[outfit.selections.shirt]"></ClothingArticle>
               </v-card>
             </v-flex>
 
             <v-flex xs4>
               <v-card flat tile>
-                <Article :article="articles[outfit.selections.pants]"></Article>
+                <ClothingArticle :article="articles[outfit.selections.pants]"></ClothingArticle>
               </v-card>
             </v-flex>
 
             <v-flex xs4>
               <v-card flat tile>
-                <Article :article="articles[outfit.selections.shoes]"></Article>
+                <ClothingArticle :article="articles[outfit.selections.shoes]"></ClothingArticle>
               </v-card>
             </v-flex>
 
@@ -31,13 +31,13 @@
 </template>
 
 <script>
-import Article from '@/components/Article'
+import ClothingArticle from '@/components/ClothingArticle'
 
 export default {
   name: 'outfit',
   props: ['articles', 'outfit'],
   components: {
-    Article
+    ClothingArticle
   }
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <section class="article" v-tooltip:top="{ html: article.name }">
+  <section class="clothingArticle" v-tooltip:top="{ html: article.name }">
     <Thumbnail :article="article"></Thumbnail>
   </section>
 </template>
@@ -8,7 +8,7 @@
 import Thumbnail from '@/components/Thumbnail'
 
 export default {
-  name: 'article',
+  name: 'clothingArticle',
   props: ['article'],
   components: {
     Thumbnail

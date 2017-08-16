@@ -1,5 +1,5 @@
 <template>
-  <v-layout class="articleChooser">
+  <v-layout class="clothingArticleChooser">
     <v-flex xs12 sm6 offset-sm3>
       <v-card>
         <v-container fluid>
@@ -12,7 +12,7 @@
                 :class="{ articleCard: true,
                           selected: article.id === selectedId,
                           loser: selectedId && article.id !== selectedId }">
-                <Article :article="article" v-on:click.native="chooseArticle(article)"></Article>
+                <ClothingArticle :article="article" v-on:click.native="chooseArticle(article)"></ClothingArticle>
               </v-card>
             </v-flex>
 
@@ -24,13 +24,13 @@
 </template>
 
 <script>
-import Article from '@/components/Article'
+import ClothingArticle from '@/components/ClothingArticle'
 
 export default {
-  name: 'articleChooser',
+  name: 'clothingArticleChooser',
   props: ['choices', 'selectedId'],
   components: {
-    Article
+    ClothingArticle
   },
   methods: {
     chooseArticle: function (article) {

@@ -4,29 +4,29 @@
 
     <section>
       <h5>Shirt</h5>
-      <ArticleChooser
+      <ClothingArticleChooser
         type="shirt"
         :choices="shirts"
         :selectedId="newOutfit.selections.shirt"
-        @choseArticle="onChoseArticle"></ArticleChooser>
+        @choseArticle="onChoseArticle"></ClothingArticleChooser>
     </section>
 
     <section>
       <h5>Pants</h5>
-      <ArticleChooser
+      <ClothingArticleChooser
         type="pants"
         :choices="pants"
         :selectedId="newOutfit.selections.pants"
-        @choseArticle="onChoseArticle"></ArticleChooser>
+        @choseArticle="onChoseArticle"></ClothingArticleChooser>
     </section>
 
     <section>
       <h5>Shoes</h5>
-      <ArticleChooser
+      <ClothingArticleChooser
         type="shoes"
         :choices="shoes"
         :selectedId="newOutfit.selections.shoes"
-        @choseArticle="onChoseArticle"></ArticleChooser>
+        @choseArticle="onChoseArticle"></ClothingArticleChooser>
     </section>
 
     <v-btn secondary
@@ -39,7 +39,7 @@
 import { EventBus } from '@/services/event-bus'
 import database from '@/services/database'
 import moment from 'moment'
-import ArticleChooser from '@/components/ArticleChooser'
+import ClothingArticleChooser from '@/components/ClothingArticleChooser'
 
 let newOutfit = {}
 const resetNewOutfit = () => {
@@ -83,7 +83,7 @@ export default {
   },
 
   components: {
-    ArticleChooser
+    ClothingArticleChooser
   },
 
   data () {

@@ -2,7 +2,7 @@
   <v-layout class="articleChooser">
     <v-flex xs12 sm6 offset-sm3>
       <v-card>
-        <v-container fluid v-bind="{ [`grid-list-lg`]: true }">
+        <v-container fluid>
           <v-layout row wrap>
 
             <v-flex xs4 v-for="article in choices" :data="article" :key="article.id">
@@ -34,7 +34,6 @@ export default {
   },
   methods: {
     chooseArticle: function (article) {
-      // Tell the parent that this article was chosen.
       // The article has the type inside of it so we'll know
       // which category the selection refers to.
       this.$emit('choseArticle', article)
@@ -52,7 +51,7 @@ export default {
   border: 1px solid #7DBDD8;
 }
 
-@keyframes fadeout{
+@keyframes fadeout {
   0%{opacity:1}
   100%{opacity:0.3}
 }

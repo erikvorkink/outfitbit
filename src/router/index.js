@@ -3,8 +3,8 @@ import VueFire from 'vuefire'
 import VueMoment from 'vue-moment'
 
 import Router from 'vue-router'
-import OutfitRecorder from '@/components/OutfitRecorder'
-import History from '@/components/History'
+import OutfitRecorder from '@/views/OutfitRecorder'
+import History from '@/views/History'
 
 Vue.use(Router)
 Vue.use(VueFire)

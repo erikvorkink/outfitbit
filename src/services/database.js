@@ -15,7 +15,7 @@ const db = firebaseApp.database()
 const articlesRef = db.ref('articles')
 const outfitsRef = db.ref('outfits')
 
-// We don't need to monitor articles so load them up once
+// Articles do not change frequently so load them up once
 let articles = {}
 articlesRef.once('value', (snapshot) => {
   snapshot.forEach((item) => {
@@ -42,9 +42,10 @@ export default {
   createOutfit: (outfit) => {
     let record = {
       date: outfit.moment.format('YYYY-MM-DD'),
-      reverse_order: outfit.moment.unix() * -1,
+      reverse_order: outfit.moment.unix() * -1, // Firebase doesn't have "sort descending"
       selections: outfit.selections
     }
+    // console.log(record)
     outfitsRef.push(record)
   }
 }

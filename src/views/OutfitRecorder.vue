@@ -4,17 +4,29 @@
 
     <section>
       <h5>Shirt</h5>
-      <ArticleChooser type="shirt" :choices="shirts" :selectedId="newOutfit.selections.shirt" @choseArticle="onChoseArticle"></ArticleChooser>
+      <ArticleChooser
+        type="shirt"
+        :choices="shirts"
+        :selectedId="newOutfit.selections.shirt"
+        @choseArticle="onChoseArticle"></ArticleChooser>
     </section>
 
     <section>
       <h5>Pants</h5>
-      <ArticleChooser type="pants" :choices="pants" :selectedId="newOutfit.selections.pants" @choseArticle="onChoseArticle"></ArticleChooser>
+      <ArticleChooser
+        type="pants"
+        :choices="pants"
+        :selectedId="newOutfit.selections.pants"
+        @choseArticle="onChoseArticle"></ArticleChooser>
     </section>
 
     <section>
       <h5>Shoes</h5>
-      <ArticleChooser type="shoes" :choices="shoes" :selectedId="newOutfit.selections.shoes" @choseArticle="onChoseArticle"></ArticleChooser>
+      <ArticleChooser
+        type="shoes"
+        :choices="shoes"
+        :selectedId="newOutfit.selections.shoes"
+        @choseArticle="onChoseArticle"></ArticleChooser>
     </section>
 
     <v-btn secondary
@@ -30,7 +42,7 @@ import moment from 'moment'
 import ArticleChooser from '@/components/ArticleChooser'
 
 let newOutfit = {}
-let resetNewOutfit = () => {
+const resetNewOutfit = () => {
   newOutfit = {
     moment: moment(),
     selections: {
@@ -41,9 +53,10 @@ let resetNewOutfit = () => {
   }
 }
 
-let outfitIsValid = (outfit) => {
+const outfitIsValid = (outfit) => {
   return outfit.selections.shirt && outfit.selections.pants && outfit.selections.shoes
 }
+
 const greetingMessages = [
   'What\'ll it be today?',
   'Arm yourself for battle',

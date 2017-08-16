@@ -1,6 +1,6 @@
 <img src="https://github.com/erikvorkink/outfitbit/raw/master/src/assets/logo.png" width="200">
 
-Outfitbit is a simple web app that tracks which outfit I wear each day. I created it primarily to experiment with Vue.js, Webpack, Firebase, and more. I look forward to having enough data to answer useless questions like "which shoes do I wear most often on Wednesdays?"
+Outfitbit is a simple web app that tracks which outfit you wear each day. I created it primarily to experiment with Vue.js, Webpack, Firebase, and more. I look forward to having enough data to answer useless questions like "which shoes do I wear most often on Wednesdays?"
 
 
 ## Current Functionality
@@ -31,6 +31,7 @@ Outfitbit is a simple web app that tracks which outfit I wear each day. I create
 
 ## Code Improvements
 - Dynamic article types so "shirt", "pants", and "shoes" aren't hard-coded. First step is to create and use constants. Second step is to pull types from Firebase.
+- Better error handling when unable to communicate with Firebase.
 - Tests.
 
 
@@ -61,7 +62,7 @@ Outfitbit is a simple web app that tracks which outfit I wear each day. I create
     ... (type should be "shirt", "pants", or "shoes")
 }
 ```
-- Copy config/local_settings.js.dist to config/local_settings.js and fill in the various Firebase and Cloudinary settings.
+- Copy `config/local_settings.js.dist` to `config/local_settings.js` (unversioned) and fill in the various Firebase and Cloudinary settings.
 
 
 ## Build Setup

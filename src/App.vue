@@ -1,5 +1,6 @@
 <template>
   <v-app id="app" standalone>
+    <!-- Drawer -->
     <v-navigation-drawer
       persistent
       v-model="drawer"
@@ -22,6 +23,8 @@
       </v-list>
       <v-list class="pt-0">
         <v-divider></v-divider>
+
+        <!-- Menu items -->
         <v-list-tile v-for="item in items" :key="item.title" router :to="item.href">
           <v-list-tile-action>
             <v-icon>{{ item.icon }}</v-icon>
@@ -30,17 +33,21 @@
             <v-list-tile-title>{{ item.title }}</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
+
       </v-list>
     </v-navigation-drawer>
     <v-toolbar fixed dark>
       <v-toolbar-side-icon @click.native.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title>outfitbit</v-toolbar-title>
     </v-toolbar>
+
+    <!-- Main section -->
     <main>
       <v-container fluid>
         <router-view></router-view>
       </v-container>
 
+      <!-- Notifications -->
       <v-snackbar
         :timeout="snackbar.timeout"
         :success="snackbar.context === 'success'"

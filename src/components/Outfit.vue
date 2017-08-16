@@ -2,7 +2,7 @@
   <v-layout class="outfit">
     <v-flex xs12 sm6 offset-sm3>
       <v-card>
-        <v-container fluid v-bind="{ [`grid-list-lg`]: true }">
+        <v-container fluid>
           <v-layout row wrap>
 
             <v-flex xs4>

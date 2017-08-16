@@ -32,7 +32,7 @@ Outfitbit is a simple web app that tracks which outfit you wear each day. I crea
 ## Code Improvements
 - Dynamic article types so "shirt", "pants", and "shoes" aren't hard-coded. First step is to create and use constants. Second step is to pull types from Firebase.
 - Better error handling when unable to communicate with Firebase.
-- Tests.
+- More tests.
 
 
 ## Known Issues
@@ -76,4 +76,7 @@ npm run dev
 
 # build for production with minification
 npm run build
+
+# run unit tests
+npm run unit
 ```
